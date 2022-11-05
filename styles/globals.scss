@@ -114,12 +114,11 @@ img.resp {
     background: $blue2;
     img {
       position: absolute;
-      inset: 0;
-      object-fit: cover;
       min-width: 100%;
       min-height: 100%;
-      width:auto;
-      height:auto;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
     }
   }
   .info {
