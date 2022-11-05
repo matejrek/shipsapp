@@ -1,6 +1,8 @@
 import { useQuery } from '@apollo/client';
 import getAllShipsQuery from '../util/graphql/queries/getAllShips';
 import Link from 'next/link'
+import Image from 'next/image'
+
 
 interface ShipsList {
   id: number;
@@ -15,15 +17,28 @@ export default function ShipsList(){
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
 
-  return data.ships.map(({ id, name, image, type }: ShipsList) => (
-    <div key={id}>
-      <Link href={"/details/"+id}>
-        <h2 className="title">{name}</h2>
-        <img src={image} alt="{name}" />
-        <p>
-          {type}
-        </p>
-      </Link>
+  return (
+    <div className="ships-list">
+    {
+      data.ships.map(({ id, name, image, type }: ShipsList) => (
+        <Link className="list-item" key={id} href={"/details/"+id}>
+          <div className="image-wrapper">
+            {
+              image != null ? 
+              <Image src={image} alt="{name}" width={300} height={200} />
+              :
+              ''
+            }
+          </div>
+          <div className="info">
+            <h2 className="list-title">{name}</h2>
+            <span className="list-subtitle">
+              {type}
+            </span>
+          </div>
+        </Link>
+      ))
+    }
     </div>
-  ));
+  )
 }

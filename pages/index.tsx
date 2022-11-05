@@ -10,7 +10,7 @@ export default function Home() {
         <meta name="description" content="Ships app - displaying ships from spacex api" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      <h1 className="profile-title">Collections</h1>
       <ShipsList />
     </div>
   )

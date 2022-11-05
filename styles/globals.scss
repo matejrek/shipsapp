@@ -1,9 +1,66 @@
+$black: #1E1E1E;
+$white: #FFF;
+$blue1: #F7F8FB;
+$blue2: #D3D7E1;
+$blue3: #233869;
+
+$font1: 'Nunito', sans-serif;
+$font2: 'Indie Flower', cursive;
+
+.profile-title {
+  font-weight: 500; 
+  font-style: normal; 
+  font-family: $font1;
+  font-size: 40px;
+  line-height: 55px;
+  color: $black;
+  margin: 40px 0 20px;
+}
+
+.profile-subtitle {
+  font-weight: 500; 
+  font-style: normal; 
+  font-family: $font1;
+  font-size: 18px;
+  line-height: 24px;
+  color: $black;
+}
+
+.list-title {
+  font-weight: 700;
+  font-style: normal; 
+  font-family: $font1;
+  font-size: 18px;
+  line-height: 24px;
+  color: $black;
+}
+
+.list-subtitle {
+  font-weight: 700;
+  font-style: normal; 
+  font-family: $font1;
+  font-size: 14px;
+  line-height: 19px;
+  color: $black;
+}
+
+.playful {
+  font-weight: 400;
+  font-style: normal; 
+  font-family: $font2;
+  font-size: 18px;
+  line-height: 26px;
+  color: $black;
+}
+
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: $font1;
+  color: $black;
+  background: $blue1;
 }
 
 a {
@@ -15,12 +72,58 @@ a {
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+.container {
+  width: 100%; 
+  padding: 15px; 
+  margin: 0 auto; 
+  max-width: 720px;
+}
+img.resp {
+  max-width: 100%; 
+  height: auto;
+}
+
+.ships-list {
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 15px;
+  .list-item {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    border-radius: 10px; 
+    overflow: hidden;
+    background: $white;
   }
-  body {
-    color: white;
-    background: black;
+  .image-wrapper {
+    display: flex;
+    width: 100%;
+    height: 0;
+    padding: 55% 0 0 0;
+    position: relative;
+    overflow: hidden;
+    background: $blue2;
+    img {
+      position: absolute;
+      inset: 0;
+      object-fit: cover;
+      min-width: 100%;
+      min-height: 100%;
+      width:auto;
+      height:auto;
+    }
+  }
+  .info {
+    display:flex;
+    flex-direction: column;
+    padding:20px 70px 20px 20px;
+  }
+  .list-title {
+    margin: 0;
+  }
+  .list-subtitle {
+    margin: 0;
+    color: $blue3;
+    opacity: 0.5;
   }
 }
