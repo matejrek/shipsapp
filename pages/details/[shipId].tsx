@@ -4,6 +4,14 @@ import getShipByIdQuery from '../../util/graphql/queries/getShipById';
 import Link from 'next/link'
 import css from '../../styles/Details.module.scss'
 import Bg from '../../public/bg.svg';
+import Back from '../../public/arrow-left.svg';
+import Image from 'next/image';
+
+interface MissionData{
+  flight: string,
+  name: string
+}
+
 
 function ShipDetail(){
     const router = useRouter()
@@ -18,73 +26,114 @@ function ShipDetail(){
 
     return( 
       <>
-        <Link href="/">Back home</Link>
-        <h1 className="ship-name">{id}</h1><br/>
-        {
-          data.ship.type ? 
-          <div className="ship-type">
-            Type: {data.ship.type}
+        <div className={css.detailHeading}>
+          <div className={css.imageWrapper}>
+            <Image src={data.ship.image} alt={"Image of" + id} width={300} height={200} />
           </div>
-          : 
-          ''
-        }
+          <Link className="button" href="/">
+            <Back />
+          </Link>
+          <div className={css.detailInfo}>
+            <h1 className={"profile-title " + css.shipName}>{id}</h1>
+            {
+              data.ship.type ? 
+              <div className={"list-title " + css.shipType}>
+                Type: {data.ship.type}
+              </div>
+              : 
+              ''
+            }
+          </div>
+        </div>
 
-        <h3 className="playful">Basic info</h3>
-        {/*year built*/}
-        {
-          data.ship.year_built ? 
-          <div className={css.dataBox}>
-            <Bg />
-            <div className={css.dataBoxContent}>
-              <span>Year built:</span>
-              {data.ship.year_built}
+        <h3 className="playful arrow-down">Basic info</h3>
+        <div className={css.dataBoxList}>
+          {/*year built*/}
+          {
+            data.ship.year_built ? 
+            <div className={css.dataBox}>
+              <Bg />
+              <div className={css.dataBoxContent}>
+                <span className={css.title + " playful"}>Year built:</span>
+                <span className={css.data  + " list-title"}>{data.ship.year_built}</span>
+              </div>
             </div>
-          </div>
-          : 
-          ''
-        }
-        {/*weight*/}
-        {
-          data.ship.weight_kg ? 
-          <div className={css.dataBox}>
-            <Bg />
-            <div className={css.dataBoxContent}>
-              <span>Weight:</span>
-              {data.ship.weight_kg}
+            : 
+            ''
+          }
+          {/*weight*/}
+          {
+            data.ship.weight_kg ? 
+            <div className={css.dataBox}>
+              <Bg />
+              <div className={css.dataBoxContent}>
+                <span className={css.title + " playful"}>Weight:</span>
+                <span className={css.data + " list-title"}>{data.ship.weight_kg}</span>
+              </div>
             </div>
-          </div>
-          : 
-          ''
-        }
-        {/*class*/}
-        {
-          data.ship.class ? 
-          <div className={css.dataBox}>
-            <Bg />
-            <div className={css.dataBoxContent}>
-              <span>Class:</span>
-              {data.ship.class}
+            : 
+            ''
+          }
+          {/*class*/}
+          {
+            data.ship.class ? 
+            <div className={css.dataBox}>
+              <Bg />
+              <div className={css.dataBoxContent}>
+                <span className={css.title + " playful"}>Class:</span>
+                <span className={css.data + " list-title"}>{data.ship.class}</span>
+              </div>
             </div>
-          </div>
-          : 
-          ''
-        }
-        {/*home port*/}
-        {
-          data.ship.home_port ? 
-          <div className={css.dataBox}>
-            <Bg />
-            <div className={css.dataBoxContent}>
-              <span>Home port:</span>
-              {data.ship.home_port}
+            : 
+            ''
+          }
+          {/*home port*/}
+          {
+            data.ship.home_port ? 
+            <div className={css.dataBox}>
+              <Bg />
+              <div className={css.dataBoxContent}>
+                <span className={css.title + " playful"}>Home port:</span>
+                <span className={css.data + " list-title"}>{data.ship.home_port}</span>
+              </div>
             </div>
-          </div>
-          : 
-          ''
-        }
-
+            : 
+            ''
+          }
+        </div>
 
         {/*missions*/}
+        <h3 className="playful arrow-down">Missions</h3>
+        <div className={css.missionList}>
+        {
+          data.ship.missions ?
+            data.ship.missions.map(({ flight, name }: MissionData) => {
+              return (
+                <div className={css.missionItem}>
+                  <div className={"list-title " + css.missionName}>
+                    {name}
+                  </div>
+                  <div className={"list-subtitle" + css.missionFligth}>
+                    Flight: {flight}
+                  </div>
+                </div>
+              )
+            })
+          :
+          <div className={css.noMission}>
+            No missions :(
+          </div>
+        }
+        </div>
+
+        <div className={css.backToList}>
+          <Link href="/" className="playful">
+            <span className="button shadow">
+              <Back />
+            </span>
+            Back to the list
+          </Link>
+        </div>
       </>
     )
 }

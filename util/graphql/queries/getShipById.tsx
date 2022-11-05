@@ -12,6 +12,7 @@ const oneShipByIdQuery = gql`
           name
       }
       home_port
+      image
     }
   }
 `;

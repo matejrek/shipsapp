@@ -46,6 +46,21 @@
   color: $black;
 }
 
+.arrow-down {
+  display: flex;
+  position: relative;
+  gap: 10px;
+  &:after {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background: url('../public/down.svg');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    display: inline-block;
+    margin-top: 10px;
+  }
+}
 
 html,
 body {
@@ -67,7 +82,7 @@ a {
 
 .container {
   width: 100%; 
-  padding: 15px; 
+  padding: 0 15px; 
   margin: 0 auto; 
   max-width: 720px;
 }
@@ -118,5 +133,23 @@ img.resp {
     margin: 0;
     color: $blue3;
     opacity: 0.5;
+  }
+}
+
+.button {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  background: $blue1;
+  svg {
+    path {
+      fill: $blue3;
+    }
+  } 
+  &.shadow{
+    box-shadow: 0px 1px 0px $blue2;
   }
 }
