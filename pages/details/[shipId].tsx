@@ -6,6 +6,7 @@ import css from '../../styles/Details.module.scss'
 import Bg from '../../public/bg.svg';
 import Back from '../../public/arrow-left.svg';
 import Image from 'next/image';
+import Head from 'next/head'
 
 interface MissionData{
   flight: string,
@@ -26,9 +27,19 @@ function ShipDetail(){
 
     return( 
       <>
+        <Head>
+          <title>{data.ship.name} | Ships app</title>
+          <meta name="description" content="Ships app - displaying ships from spacex api" />
+          <link rel="icon" href="/favicon.ico" />
+        </Head>
         <div className={css.detailHeading}>
           <div className={css.imageWrapper}>
-            <Image src={data.ship.image} alt={"Image of" + id} width={300} height={200} />
+            {
+              data.ship.image ?
+              <Image src={data.ship.image} alt={"Image of" + id} width={300} height={200} />
+              :
+              ''
+            }
           </div>
           <Link className="button" href="/">
             <Back />
@@ -106,7 +117,7 @@ function ShipDetail(){
         <h3 className="playful arrow-down">Missions</h3>
         <div className={css.missionList}>
         {
-          data.ship.missions ?
+          data.ship.missions.length > 0 ?
             data.ship.missions.map(({ flight, name }: MissionData, index:number) => {
               return (
                 <div className={css.missionItem} key={index}>
