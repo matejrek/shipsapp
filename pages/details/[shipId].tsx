@@ -21,7 +21,7 @@ function ShipDetail(){
       variables: { id }
     });
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <div className="loadingOverly"><div className="loader"></div></div>;
     if (error) return <p>Error :(</p>;
 
     return( 
@@ -34,7 +34,7 @@ function ShipDetail(){
             <Back />
           </Link>
           <div className={css.detailInfo}>
-            <h1 className={"profile-title " + css.shipName}>{id}</h1>
+            <h1 className={"profile-title " + css.shipName}>{data.ship.name}</h1>
             {
               data.ship.type ? 
               <div className={"list-title " + css.shipType}>

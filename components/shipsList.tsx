@@ -2,7 +2,7 @@ import { useQuery } from '@apollo/client';
 import getAllShipsQuery from '../util/graphql/queries/getAllShips';
 import Link from 'next/link'
 import Image from 'next/image'
-
+import More from '../public/arrow-right.svg';
 
 interface ShipsList {
   id: number;
@@ -14,7 +14,7 @@ interface ShipsList {
 export default function ShipsList(){
   const { loading, error, data } = useQuery(getAllShipsQuery);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <div className="loadingOverly"><div className="loader"></div></div>;
   if (error) return <p>Error :(</p>;
 
   return (
@@ -34,6 +34,9 @@ export default function ShipsList(){
             <h2 className="list-title">{name}</h2>
             <span className="list-subtitle">
               {type}
+            </span>
+            <span className="button shadow">
+              <More />
             </span>
           </div>
         </Link>
