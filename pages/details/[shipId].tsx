@@ -107,9 +107,9 @@ function ShipDetail(){
         <div className={css.missionList}>
         {
           data.ship.missions ?
-            data.ship.missions.map(({ flight, name }: MissionData) => {
+            data.ship.missions.map(({ flight, name }: MissionData, index:number) => {
               return (
-                <div className={css.missionItem}>
+                <div className={css.missionItem} key={index}>
                   <div className={"list-title " + css.missionName}>
                     {name}
                   </div>
