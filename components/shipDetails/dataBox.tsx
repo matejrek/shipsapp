@@ -1,7 +1,12 @@
 import css from '../../styles/Details.module.scss'
 import Bg from '../../public/bg.svg';
 
-export default function DataBox(props:any){
+export interface Props {
+  dataBoxTitle: string;
+  dataBoxValue: string | number
+}
+
+export default function DataBox(props:Props){
 
   return (
     <div className={css.dataBox}>
