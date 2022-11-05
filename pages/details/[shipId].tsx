@@ -3,10 +3,11 @@ import { useQuery } from '@apollo/client';
 import getShipByIdQuery from '../../util/graphql/queries/getShipById';
 import Link from 'next/link'
 import css from '../../styles/Details.module.scss'
-import Bg from '../../public/bg.svg';
 import Back from '../../public/arrow-left.svg';
 import Image from 'next/image';
 import Head from 'next/head'
+import DataBox from '../../components/shipDetails/dataBox';
+
 
 interface MissionData{
   flight: string,
@@ -62,52 +63,28 @@ function ShipDetail(){
           {/*year built*/}
           {
             data.ship.year_built ? 
-            <div className={css.dataBox}>
-              <Bg />
-              <div className={css.dataBoxContent}>
-                <span className={css.title + " playful"}>Year built:</span>
-                <span className={css.data  + " list-title"}>{data.ship.year_built}</span>
-              </div>
-            </div>
+            <DataBox dataBoxTitle="Year built:" dataBoxValue={data.ship.year_built} />
             : 
             ''
           }
           {/*weight*/}
           {
             data.ship.weight_kg ? 
-            <div className={css.dataBox}>
-              <Bg />
-              <div className={css.dataBoxContent}>
-                <span className={css.title + " playful"}>Weight:</span>
-                <span className={css.data + " list-title"}>{data.ship.weight_kg}</span>
-              </div>
-            </div>
+            <DataBox dataBoxTitle="Weight:" dataBoxValue={data.ship.weight_kg} />
             : 
             ''
           }
           {/*class*/}
           {
             data.ship.class ? 
-            <div className={css.dataBox}>
-              <Bg />
-              <div className={css.dataBoxContent}>
-                <span className={css.title + " playful"}>Class:</span>
-                <span className={css.data + " list-title"}>{data.ship.class}</span>
-              </div>
-            </div>
+            <DataBox dataBoxTitle="Class:" dataBoxValue={data.ship.class} />
             : 
             ''
           }
           {/*home port*/}
           {
             data.ship.home_port ? 
-            <div className={css.dataBox}>
-              <Bg />
-              <div className={css.dataBoxContent}>
-                <span className={css.title + " playful"}>Home port:</span>
-                <span className={css.data + " list-title"}>{data.ship.home_port}</span>
-              </div>
-            </div>
+            <DataBox dataBoxTitle="Home port:" dataBoxValue={data.ship.home_port} />
             : 
             ''
           }
